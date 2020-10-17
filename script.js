@@ -6,9 +6,29 @@ const unit = '&units=metric';
 const inputButton = document.getElementById('input-city');
 const searchButton = document.getElementById('search-button');
 
+
+// Display the data received from API
+function displayData(data) {    
+    const background = data.weather[0].main;
+    const weatherIcon = data.weather[0].icon;
+    const city = data.name;
+    const temperature = data.main.temp;
+    const weatherCondition = data.weather[0].main;
+
+    
+    document.body.style.backgroundImage =  `url('images/${background}.png')`;
+    document.getElementById('icon').src= `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+    document.getElementById('city').innerText = city;
+    document.getElementById('temperature').innerText = temperature;
+    document.getElementById('weather-condition').innerText = weatherCondition;
+}
+
+
+// EventListener for search button click
 searchButton.addEventListener('click', function() {
     const inputCity = document.getElementById('input-city').value;
 
+    // Handle the empty value search
     if(!inputCity) return;
 
     const city = 'q=' + inputCity;
@@ -20,6 +40,8 @@ searchButton.addEventListener('click', function() {
     .catch(error => console.log(error));
 });
 
+
+// EventListener for Enter button to search
 inputButton.addEventListener("keyup", function(event) {
     if(event.keyCode === 13) {
         event.preventDefault();
@@ -27,30 +49,3 @@ inputButton.addEventListener("keyup", function(event) {
     }
 });
 
-function displayData(data) {
-    console.log(data);
-    
-    const background = data.weather[0].main;
-    const weatherIcon = data.weather[0].icon;
-    const city = data.name;
-    const temperature = data.main.temp;
-    const weatherCondition = data.weather[0].main;
-
-    
-    document.body.style.background =  `url('images/${background}.png') no-repeat`;
-    document.getElementById('icon').src= `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-    document.getElementById('city').innerText = city;
-    document.getElementById('temperature').innerText = temperature;
-    document.getElementById('weather-condition').innerText = weatherCondition;
-}
-
-
-
-
-var input = document.getElementById("myInput");
-input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("myBtn").click();
-  }
-});
