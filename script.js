@@ -8,6 +8,9 @@ const searchButton = document.getElementById('search-button');
 
 searchButton.addEventListener('click', function() {
     const inputCity = document.getElementById('input-city').value;
+
+    if(!inputCity) return;
+
     const city = 'q=' + inputCity;
     const url= port + ip + city + apiKey + unit;
 
@@ -15,6 +18,13 @@ searchButton.addEventListener('click', function() {
     .then(res => res.json())
     .then(data => displayData(data))
     .catch(error => console.log(error));
+});
+
+inputButton.addEventListener("keyup", function(event) {
+    if(event.keyCode === 13) {
+        event.preventDefault();
+        searchButton.click();
+    }
 });
 
 function displayData(data) {
@@ -33,3 +43,14 @@ function displayData(data) {
     document.getElementById('temperature').innerText = temperature;
     document.getElementById('weather-condition').innerText = weatherCondition;
 }
+
+
+
+
+var input = document.getElementById("myInput");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("myBtn").click();
+  }
+});

@@ -20,14 +20,14 @@
 
 <body>
     <div class="container">
-        <form class="col-md-6 m-auto py-5">
+        <div class="col-md-6 m-auto py-5">
             <div class="input-group mb-3">
                 <input id="input-city" type="text" class="form-control" placeholder="Enter a location for Weather ...">
-                <div class="input-group-append">
-                    <button id="search-button" type="button" class="btn btn-danger">Search</button>
+                <div class="input-group-append"></div>
+                    <button id="search-button" class="btn btn-danger">Search</button>
                 </div>
             </div>
-        </form>
+        </div>
         <div class="weather-status text-white text-center">
             <img id='icon' src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
             <h1 id="city">City</h1>
@@ -35,6 +35,10 @@
             <h1 id="weather-condition" class="lead">Weather</h1>
         </div>
     </div>
+
+    <br><br><br>
+    <input id="myInput" value="Some text..">
+    <button id="myBtn" onclick="javascript:alert('Hello World!')">Button</button>
     
     <script src="script.js"></script>
 </body>
